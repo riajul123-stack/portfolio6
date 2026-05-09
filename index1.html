@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Khondker Builders</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --primary:#072541;
+    --secondary:#00b7ff;
+    --light:#f4f8fc;
+    --white:#ffffff;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+    scroll-behavior:smooth;
+}
+
+body{
+    background:var(--light);
+    overflow-x:hidden;
+}
+
+/* HEADER */
+
+header{
+    width:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:1000;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:18px 8%;
+
+    background:rgba(0,0,0,.55);
+    backdrop-filter:blur(10px);
+}
+
+.logo{
+    color:white;
+    font-size:30px;
+    font-weight:700;
+}
+
+.logo span{
+    color:var(--secondary);
+}
+
+nav{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    transition:.3s;
+    font-size:15px;
+}
+
+nav a:hover{
+    color:var(--secondary);
+}
+
+/* HERO */
+
+.hero{
+    height:100vh;
+
+    background:
+    linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)),
+    url('background.jpeg')
+    center/cover;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+
+    color:white;
+    padding:20px;
+}
+
+.hero-content{
+    max-width:900px;
+}
+
+.hero-content h1{
+    font-size:75px;
+    margin-bottom:20px;
+}
+
+.hero-content p{
+    font-size:20px;
+    color:#ddd;
+    margin-bottom:35px;
+}
+
+.btn{
+    display:inline-block;
+    padding:15px 35px;
+    background:var(--secondary);
+    color:var(--primary);
+    border-radius:50px;
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s;
+}
+
+.btn:hover{
+    background:white;
+    transform:translateY(-5px);
+}
+
+/* COMMON */
+
+section{
+    padding:100px 8%;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.section-title h2{
+    font-size:48px;
+    color:var(--primary);
+}
+
+.section-title p{
+    color:#666;
+    margin-top:10px;
+}
+
+/* ABOUT */
+
+.about{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+}
+
+.about img{
+    width:100%;
+    border-radius:20px;
+}
+
+.about-text h3{
+    font-size:42px;
+    color:var(--primary);
+    margin-bottom:20px;
+}
+
+.about-text p{
+    line-height:1.9;
+    color:#555;
+}
+
+.management{
+    background:white;
+}
+
+/* GRID SETUP */
+.management-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    align-items:stretch;
+}
+
+/* CEO FULL WIDTH */
+.management-card:first-child{
+    grid-column:1 / -1;
+    max-width:500px;
+    justify-self:center;
+}
+
+/* CARD STYLE */
+.management-card{
+    width:100%;
+    background:var(--light);
+    border-radius:25px;
+    overflow:hidden;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+/* IMAGE FIX */
+.management-card img{
+    width:100%;
+    height:350px;
+    object-fit:contain;
+    display:block;
+    background:white;
+}
+
+/* TEXT FIX (NAME STAYS CENTERED) */
+.management-info{
+    padding:25px;
+}
+
+.management-info h3,
+.management-info h4{
+    text-align:center;
+    margin:0;
+}
+/* FAMILY */
+
+.family{
+    background:var(--light);
+}
+
+.family-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+
+.family-card{
+    background:white;
+    padding:35px;
+    border-radius:20px;
+    text-align:center;
+    transition:.3s;
+}
+
+.family-card:hover{
+    transform:translateY(-10px);
+}
+
+.family-card h3{
+    color:var(--primary);
+    margin-bottom:10px;
+}
+
+/* PROJECTS */
+
+.project-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:25px;
+}
+
+.project-card{
+    position:relative;
+    overflow:hidden;
+    border-radius:20px;
+}
+
+.project-card img{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+    transition:.5s;
+}
+
+.project-card:hover img{
+    transform:scale(1.1);
+}
+
+.overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.55);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+
+    color:white;
+    opacity:0;
+    transition:.4s;
+}
+
+.project-card:hover .overlay{
+    opacity:1;
+}
+
+/* UPCOMING */
+
+.upcoming{
+    background:white;
+}
+
+.upcoming-box{
+    background:var(--light);
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+}
+
+.upcoming-box h3{
+    color:var(--primary);
+    margin-bottom:15px;
+}
+/*gallery*/
+/* GALLERY */
+
+.gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.gallery-grid img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+    border-radius:15px;
+    transition:.4s;
+}
+
+.gallery-grid img:hover{
+    transform:scale(1.05);
+}
+
+/* SISTER */
+
+.sister{
+    background:white;
+}
+
+.sister-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+
+.sister-card{
+    background:var(--light);
+    padding:35px;
+    border-radius:20px;
+    text-align:center;
+    transition:.3s;
+}
+
+.sister-card:hover{
+    transform:translateY(-10px);
+}
+
+.sister-card i{
+    font-size:70px;
+    color:var(--secondary);
+    margin-bottom:20px;
+}
+
+/* CONTACT */
+
+.contact{
+    background:linear-gradient(135deg,#001f3f,#003d7a);
+    color:white;
+}
+
+.contact-container{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+}
+
+.contact-info h2{
+    font-size:45px;
+    margin-bottom:20px;
+}
+
+.contact-info p{
+    margin-bottom:18px;
+    color:#ddd;
+}
+
+.contact-info i{
+    color:var(--secondary);
+    margin-right:10px;
+}
+
+.contact form{
+    display:flex;
+    flex-direction:column;
+}
+
+.contact input,
+.contact textarea{
+    margin-bottom:18px;
+    padding:16px;
+    border:none;
+    border-radius:12px;
+}
+
+.contact button{
+    padding:15px;
+    border:none;
+    border-radius:50px;
+    background:var(--secondary);
+    color:var(--primary);
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* FOOTER */
+
+footer{
+    background:#000814;
+    color:white;
+    text-align:center;
+    padding:25px;
+    font-size:15px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+    .about,
+    .contact-container{
+        grid-template-columns:1fr;
+    }
+
+    .hero-content h1{
+        font-size:50px;
+    }
+
+}
+
+@media(max-width:768px){
+
+    header{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    nav{
+        justify-content:center;
+    }
+
+    .hero-content h1{
+        font-size:38px;
+    }
+
+}
+
+
+
+
+.service-images{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+    padding:15px;
+}
+
+.service-images img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    border-radius:12px;
+}
+
+
+
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        Khondker<span>Builders</span>
+    </div>
+
+    <nav>
+        <a href="#about">About Us</a>
+        <a href="#management">Management</a>
+        <a href="#family">Our Family</a>
+        <a href="#OUR SERVICES">Our Services</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#sister">Sister Concerns</a>
+        <a href="#contact"> Contact</a>
+    </nav>
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>Building Bangladesh’s Future</h1>
+
+        <p>
+            Railway Infrastructure & Agricultural Development Experts Since 2014
+        </p>
+
+        <a href="#about" class="btn">Explore More</a>
+
+    </div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section id="about">
+
+    <div class="section-title">
+        <h2>About Us</h2>
+    </div>
+
+    <div class="about">
+
+        <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1200">
+
+        <div class="about-text">
+
+            <h3>Khondker Builders</h3>
+
+            <p>
+                Since 2014, Khondker Builders has been at the forefront of Bangladesh’s infrastructure and agricultural development. With a strong commitment to excellence, we specialize in railway track construction and the supply of essential railway equipment, helping to strengthen one of the nation’s most vital transport networks.
+            </p>
+
+            <p>
+                Beyond railways, we proudly partner with the Government of Bangladesh on agricultural projects, contributing to sustainable growth and modernization in the farming sector. Our work reflects a vision of progress—combining technical expertise, innovation, and reliability to build solutions that serve communities and drive national development.
+            </p>
+
+            <p>
+                At Khondker Builders, we believe in building more than structures—we build trust, efficiency, and a better future for Bangladesh.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- MANAGEMENT -->
+
+<section class="management" id="management">
+
+    <div class="section-title">
+        <h2> CEO & Directors</h2>
+        <p>Meet Our Leadership Team</p>
+    </div>
+
+    <div class="management-grid">
+
+        <div class="management-card">
+            <img src="ceo.jpeg">
+            <div class="management-info">
+                <h3>KH Tariqul Islam (Tareq Khondker)</h3>
+                <h4>Chief Executive Officer (CEO)</h4>
+            </div>
+        </div>
+        
+        <div class="management-card">
+            <img src="director2.jpeg">
+            <div class="management-info">
+                <h3>MD Rubaid Hossain</h3>
+                <h4>Director</h4>
+            </div>
+        </div>
+        
+        
+        <div class="management-card">
+            <img src="director1.jpeg">
+            <div class="management-info">
+                <h3>MD Moniruzzaman </h3>
+                <h4>Director</h4>
+            </div>
+        </div>
+        
+    </div>
+
+</section>
+<!-- FAMILY -->
+
+<section class="family" id="family">
+
+    <div class="section-title">
+        <h2>Our Family</h2>
+    </div>
+
+    <div class="family-grid">
+
+        <div class="family-card">
+            <img src="ceo.jpeg" style="width:120px;height:120px;border-radius:50%;object-fit:cover;margin-bottom:15px;">
+            <h3>KH Tariqul Islam (Tareq Khondker)<br><br>CEO</h3>
+        </div>
+
+        <div class="family-card">
+            <img src="director1.jpeg" style="width:120px;height:120px;border-radius:50%;object-fit:cover;margin-bottom:15px;">
+            <h3>MD Moniruzzaman<br><br>Director</h3>
+        </div>
+
+        <div class="family-card">
+            <img src="director2.jpeg" style="width:120px;height:120px;border-radius:50%;object-fit:cover;margin-bottom:15px;">
+            <h3>MD. Rubaid Hossain<br><br>Director</h3>
+        </div>
+
+        <div class="family-card">
+            <img src="manager.jpeg" style="width:120px;height:120px;border-radius:50%;object-fit:cover;margin-bottom:15px;">
+            <h3>MD Rezaul Karim Shaik<br><br>Executive Manager</h3>
+        </div>
+
+        <div class="family-card">
+            <img src="hr.jpeg" style="width:120px;height:120px;border-radius:50%;object-fit:cover;margin-bottom:15px;">
+            <h3>KHM Khaled<br><br>HR & Operational Manager</h3>
+        </div>
+
+        <div class="family-card">
+            <img src="finance.jpeg" style="width:120px;height:120px;border-radius:50%;object-fit:cover;margin-bottom:15px;">
+            <h3>Noshin Tabassum Elma<br><br>Finance & Marketing</h3>
+        </div>
+
+    </div>
+<!-- ENGINEER SUB SECTION -->
+
+<div class="section-title" style="margin-top:60px;">
+    <h2>Engineer Team</h2>
+</div>
+
+<div class="family-grid">
+
+    <div class="family-card">
+        <img src="s_e.jpeg" style="width:120px;height:120px;border-radius:50%;object-fit:cover;margin-bottom:15px;">
+        <h3>Monirul Hossain Talukder Abdullah Al Fahad<br><br>Site Engineer</h3>
+    </div>
+
+    <!-- NEW SITE ENGINEER ADDED -->
+    <div class="family-card">
+        <img src="s_e2.png" style="width:120px;height:120px;border-radius:50%;object-fit:cover;margin-bottom:15px;">
+        <h3>Monir Hossain Talukder<br><br>Site Engineer</h3>
+    </div>
+
+    <div class="family-card">
+        <img src="planner.jpeg" style="width:120px;height:120px;border-radius:50%;object-fit:cover;margin-bottom:15px;">
+        <h3>Amzadul Ahsan<br><br>Planner</h3>
+    </div>
+
+    <div class="family-card">
+        <img src="inspector.jpeg" style="width:120px;height:120px;border-radius:50%;object-fit:cover;margin-bottom:15px;">
+        <h3>Ajmodul Hooda Rinku<br><br>Project Inspector</h3>
+    </div>
+
+</div>
+<!-- OUR SERVICES -->
+
+<section id="OUR SERVICES">
+
+    <div class="section-title">
+        <h2>Our Services</h2>
+    </div>
+
+    <!-- SERVICE 1 -->
+
+    <div style="margin-bottom:60px;">
+
+        <h2 style="text-align:center;color:#072541;margin-bottom:25px;font-size:38px;">
+            1. Railway Construction
+        </h2>
+
+        <div class="project-card" style="max-width:900px;margin:auto;">
+
+            <div class="service-images">
+                <img src="cons1.jpeg">
+                <img src="cons2.jpeg">
+                <img src="cons3.jpeg">
+                <img src="cons4.jpeg">
+            </div>
+
+            <div class="overlay">
+                <h3>Railway Construction</h3>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SERVICE 2 -->
+
+    <div style="margin-bottom:60px;">
+
+        <h2 style="text-align:center;color:#072541;margin-bottom:25px;font-size:38px;">
+            2. Railway Equipment Supply
+        </h2>
+
+        <div class="project-card" style="max-width:900px;margin:auto;">
+
+            <div class="service-images">
+                <img src="equip1.jpeg">
+                <img src="equip2.jpeg">
+                <img src="equip3.jpeg">
+                <img src="equip4.jpeg">
+            </div>
+
+            <div class="overlay">
+                <h3>Railway Equipment Supply</h3>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SERVICE 3 -->
+
+    <div>
+
+        <h2 style="text-align:center;color:#072541;margin-bottom:25px;font-size:38px;">
+            3. Railway Manpower Distribution
+        </h2>
+
+        <div class="project-card" style="max-width:900px;margin:auto;">
+
+            <div class="service-images">
+                <img src="man1.jpeg">
+                <img src="man2.jpeg">
+                <img src="man3.jpeg">
+                <img src="man4.jpeg">
+            </div>
+
+            <div class="overlay">
+                <h3>Railway Manpower Distribution</h3>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- GALLERY -->
+
+<section id="gallery">
+
+    <div class="section-title">
+        <h2>Gallery</h2>
+    </div>
+
+    <div class="gallery-grid">
+
+        <div class="gallery-item">
+            <img src="1.jpeg">
+            <p class="caption">Inauguration and award reception ceremony of the Bangladesh Railway Accessories and Equipment Suppliers Association.</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="2.jpeg">
+            <p class="caption">During the inspection of the Bangladesh Railway Carriage and Wagon Workshop.</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="3.jpeg">
+            <p class="caption">Bangladesh Railway locomotive repair.</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="4.jpeg">
+            <p class="caption">After completing the track repair work, handing over the work to the railway officials.</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="5.jpeg">
+            <p class="caption">Construction of a warehouse for seed storage of the Bangladesh Agricultural Development Corporation.</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="6.jpeg">
+            <p class="caption">Providing the layout before constructing the seed warehouse and submitting an application to the Department of Agriculture, followed by conducting the subsequent activities.</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="7.jpeg">
+            <p class="caption">List of the Bangladesh Railway Spare Parts Accessories Association after the newly elected committee.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- SISTER -->
+
+<section class="sister" id="sister">
+
+    <div class="section-title">
+        <h2>Sister Concerns</h2>
+    </div>
+
+    <div class="sister-grid">
+
+        <div class="sister-card">
+
+            <!-- ONLY ADD THIS IMAGE -->
+            <img src="Tk_enterprise.png">
+
+            <i class="fa-solid fa-building"></i>
+            <h3>TK Enterprise Bangladesh</h3>
+            <p>Business Sister Concern</p>
+        </div>
+
+        <div class="sister-card">
+
+            <!-- ONLY ADD THIS IMAGE -->
+            <img src="simor.jpeg">
+
+            <i class="fa-solid fa-globe"></i>
+            <h3>SIMOR Industrial Solutions Ltd.</h3>
+            <p>Canada Partner Organization</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section class="contact" id="contact">
+
+    <div class="contact-container">
+
+        <div class="contact-info">
+
+            <h2>Contact</h2>
+
+            <p><i class="fa-solid fa-location-dot"></i> Chattogram: House 14, Ticket Printing Masjid, Jhautola, Pahartali, Khulshi, Chattogram.</p>
+
+            <p><i class="fa-solid fa-location-dot"></i> Dhaka: 5th Floor, House 12, Road 1, Nikunjo 2, Dhaka.</p>
+
+            <p><i class="fa-solid fa-location-dot"></i> Tangail: Shakharia, Hemnagar, Gopalpur, Tangail.</p>
+
+            <p><i class="fa-solid fa-phone"></i> Mobile: +8801703-927734</p>
+
+            <p><i class="fa-solid fa-phone"></i> Contact: +8801540-403643</p>
+
+            <p><i class="fa-solid fa-building"></i> Sister Concerns: TK Enterprise Bangladesh</p>
+
+            <p><i class="fa-solid fa-globe"></i> Partner: SIMOR Industrial Solutions Ltd, Canada</p>
+
+        </div>
+
+        <form>
+
+            <input type="text" placeholder="Your Name">
+            <input type="email" placeholder="Your Email">
+            <textarea rows="6" placeholder="Your Message"></textarea>
+
+            <button type="submit">Send Message</button>
+
+        </form>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+    <p>
+        All Rights Reserved By Khondker Builders 2026
+    </p>
+
+</footer>
+
+</body>
+</html>
